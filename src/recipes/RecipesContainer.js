@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import Title from './components/Title'
+import Title from '../components/Title'
 
 class RecipesContainer extends PureComponent {
   renderRecipe(recipe, index) {
@@ -14,7 +14,7 @@ class RecipesContainer extends PureComponent {
         </header>
 
         <main>
-          {this.props.recipes.map(this.renderRecipe) }
+          { this.props.recipes.map(this.renderRecipe) }
         </main>
       </div>
     )
