@@ -1,10 +1,11 @@
 import React, { PureComponent } from 'react'
 import Title from '../components/Title'
+import RecipeItem from './RecipeItem'
 
 class RecipesContainer extends PureComponent {
   renderRecipe(recipe, index) {
-    return null
-  }
+    return <RecipeItem key={index} { ...recipe } />
+}
 
   render() {
     return(
