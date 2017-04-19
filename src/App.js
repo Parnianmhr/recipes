@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import Title from './Components/Title'
 import RecipesContainer from './recipes/RecipesContainer'
+import './App.sass'
 
 const recipes = [
   {
