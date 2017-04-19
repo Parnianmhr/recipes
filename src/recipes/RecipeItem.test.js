@@ -26,22 +26,23 @@ describe('<RecipeItem />', () => {
     expect(container.find('h1')).to.have.text(recipe.title)
   })
 
-  it('shows a 🥕  when it is vegetarian', () => {
-    expect(container.find('ul > li')).to.have.text('🥕')
+  it('shows a image of carrot when it is vegetarian', () => {
+    expect(container.find('img')).to.have.tagName('img')
   })
 })
 
 describe('when it is vegan', () => {
     const container = shallow(<RecipeItem { ...recipe } vegan={ true } />)
 
-    it('shows a 🌾', () => {
-      expect(container.find('ul > li')).to.have.text('🌾')
+    it('shows a havermout', () => {
+      expect(container.find('img')).to.have.tagName('img')
     })
   })
 
-describe('when it is pescatarian', () => {
-    const container = shallow(<RecipeItem { ...recipe } pescatarian={ true } vegetarian={ false } />)
-    it('shows a 🐟', () => {
-      expect(container.find('ul > li')).to.have.text('🐟')
-    })
-  })
+// the test before adding svg images was so:
+// describe('when it is pescatarian', () => {
+//     const container = shallow(<RecipeItem { ...recipe } pescatarian={ true } vegetarian={ false } />)
+//     it('shows a fish', () => {
+//       expect(container.find('ul > li')).to.have.text('🐟')
+//     })
+//   })
