@@ -2,6 +2,7 @@ import React, { PureComponent, PropTypes } from 'react'
 import Pescatarian from '../images/pescatarian.svg'
 import Vegan from '../images/vegan.svg'
 import Vegetarian from '../images/vegetarian.svg'
+import './RecipeItem.sass'
 
 class RecipeItem extends PureComponent {
   static propTypes = {
