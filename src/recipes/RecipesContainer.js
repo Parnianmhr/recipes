@@ -1,4 +1,5 @@
 import React, { PureComponent, PropTypes } from 'react'
+import { connect } from 'react-redux'
 import Title from '../components/Title'
 import RecipeItem from './RecipeItem'
 import './RecipesContainer.sass'
@@ -35,4 +36,8 @@ class RecipesContainer extends PureComponent {
   }
 }
 
-export default RecipesContainer
+const mapSatetToProps = ({ recipes }) => ({
+  recipes
+})
+
+export default connect(mapSatetToProps)(RecipesContainer)
