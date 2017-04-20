@@ -3,7 +3,7 @@ import Pescatarian from '../images/pescatarian.svg'
 import Vegan from '../images/vegan.svg'
 import Vegetarian from '../images/vegetarian.svg'
 import LikeButton from '../components/LikeButton'
-import toggleLikeAction from '../actions/recipes/toggle-like'
+// import toggleLikeAction from '../actions/recipes/toggle-like'
 import './RecipeItem.sass'
 
 class RecipeItem extends PureComponent {
@@ -15,26 +15,24 @@ class RecipeItem extends PureComponent {
     vegan: PropTypes.bool,
     vegetarian: PropTypes.bool,
     pescatarian: PropTypes.bool,
-    toggleLikeAction: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
   }
 
   toggleLike() {
-      const { _id, likedBy, currentUser } = this.props
-      if (!currentUser) return
-
+      const { onChange, _id, liked} = this.props
       console.log('CLICK (RecipeItem)', _id)
-      this.props.toggleLikeAction({ _id, likedBy }, currentUser)
+      onChange(_id, {liked: !liked })
     }
 
   render() {
-    const { _id, title, photo, summary, vegan, vegetarian, pescatarian, liked, likedBy } = this.props
+    const { _id, title, photo, summary, vegan, vegetarian, pescatarian, liked } = this.props
 
     return(
       <article className="recipe">
       <header>
         <div className="cover" style={{ backgroundImage: `url(${photo})` }} />
         <h1>
-          <Link to={`/recipes/${_id}`}>{ title }</Link>
+        
         </h1>
         <ul className="categories">
             { vegan && <li title="vegan"><img src={Vegan} className='imageclass'/></li> }
@@ -46,21 +44,13 @@ class RecipeItem extends PureComponent {
           <p>{ summary }</p>
         </main>
         <footer>
-          <LikeButton
-            liked={ liked }
-            likes={likedBy.length}
-            onChange={ this.toggleLike.bind(this) } />
+          <LikeButton liked={ liked } onChange={ this.toggleLike.bind(this) } />
         </footer>
       </article>
     )
   }
 }
 
-const mapStateToProps = ({ currentUser }, { likedBy }) => {
-  return {
-    currentUser,
-    liked: likedBy.filter((like) => (like === (currentUser && currentUser._id))).length > 0
-  }
-}
 
-export default connect(mapStateToProps, { toggleLikeAction })(RecipeItem)
+
+export default RecipeItem

@@ -1,4 +1,4 @@
-import React, { PureComponent, propTypes } from 'react'
+import React, { PureComponent, PropTypes } from 'react'
 import './LikeButton.sass'
 import HeartGrey from '../images/heart-grey.svg'
 import HeartRed from '../images/heart-red.svg'
@@ -21,16 +21,16 @@ class LikeButton extends PureComponent {
     this.props.onChange()
   }
 
-  likeStatus() {
-    const { liked, likes } = this.props
-    const likesOtherThanYours = (likes || 0) - 1
-    if (liked && likesOtherThanYours > 0) {
-      return `You and ${likesOtherThanYours} others like this`
-    }
-    if (liked) return 'You like this'
-    if (likes > 0) return `${likes} others like this`
-    return null
-  }
+  // likeStatus() {
+  //   const { liked, likes } = this.props
+  //   const likesOtherThanYours = (likes || 0) - 1
+  //   if (liked && likesOtherThanYours > 0) {
+  //     return `You and ${likesOtherThanYours} others like this`
+  //   }
+  //   if (liked) return 'You like this'
+  //   if (likes > 0) return `${likes} others like this`
+  //   return null
+  // }
 
 
   render() {
@@ -43,7 +43,7 @@ class LikeButton extends PureComponent {
             <img className="heart" src={ liked ? HeartRed : HeartGrey } />
           </span>
         </button>
-        <span className="likes">{this.likeStatus()}</span>
+        <span className="likes">{ liked ? 'You like this' : null }</span>
       </p>
     )
   }
