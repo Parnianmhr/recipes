@@ -1,1 +1,5 @@
-module.exports = {}
+import recipes from './recipes'
+
+module.exports = {
+  recipes
+}
