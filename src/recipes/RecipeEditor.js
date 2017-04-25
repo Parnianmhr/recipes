@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import 'medium-editor/dist/css/medium-editor.css'
 import 'medium-editor/dist/css/themes/default.css'
 import './RecipeEditor.sass'
+import createRecipe from '../actions/recipes/create'
 
 const TYPES = [
   'vegan',
@@ -126,4 +127,4 @@ class RecipeEditor extends PureComponent {
   }
 }
 
-export default RecipeEditor
+export default connect(null, { createRecipe })(RecipeEditor)
