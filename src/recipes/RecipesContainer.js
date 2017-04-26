@@ -2,13 +2,18 @@ import React, { PureComponent, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import Title from '../components/Title'
 import RecipeItem from './RecipeItem'
+import fetchRecipes from '../actions/recipes/fetch'
 import './RecipesContainer.sass'
 
 class RecipesContainer extends PureComponent {
   static propTypes = {
-     updateRecipe: PropTypes.func.isRequired,
-     recipes: PropTypes.array.isRequired,
-   }
+    recipes: PropTypes.array.isRequired,
+    fetchRecipes: PropTypes.func.isRequired,
+  }
+
+  componentDidMount() {
+    this.props.fetchRecipes()
+  }
 
   renderRecipe(recipe, index) {
     return <RecipeItem
@@ -40,4 +45,4 @@ const mapSatetToProps = ({ recipes }) => ({
   recipes
 })
 
-export default connect(mapSatetToProps)(RecipesContainer)
+export default connect(mapSatetToProps, { fetchedRecipes })(RecipesContainer)
