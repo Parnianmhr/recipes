@@ -1,5 +1,11 @@
 import recipes from './recipes'
+import loadError from './load-error'
+import loading from './loading'
+import currentUser from './current-user'
 
 module.exports = {
-  recipes
+  recipes,
+  loadError,
+  loading,
+  currentUser,
 }
