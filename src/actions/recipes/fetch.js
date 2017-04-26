@@ -1,5 +1,7 @@
 import API from '../../middleware/api'
-
+import loadError from '../load/error'
+import loadSuccess from '../load/success'
+import loading from '../loading'
 export const FETCHED_RECIPES = 'FETCHED_RECIPES'
 
 const api = new API()
@@ -7,19 +9,25 @@ const recipes = api.service('recipes')
 
 export default () => {
   return (dispatch) => {
-    console.log('Fetching recipes...')
-    recipes.find()
-      .then((result) => {
-        console.log('Results are in!', result)
-        dispatch(fetchedRecipes(result))
-      })
-  }
-}
+    dispatch(loading(true))
 
-const fetchedRecipes = (result) => {
-  console.log('dispatching fetchedRecipes')
-  return {
-    type: FETCHED_RECIPES,
-    payload: [].concat(result.data)
+    recipes.find({
+      query: {
+        $limit: 25
+      }
+    })
+    .then((response) => {
+      dispatch(loadSuccess())
+      dispatch({
+        type: FETCHED_RECIPES,
+        payload: response.data
+      })
+    })
+    .catch((error) => {
+      dispatch(loadError(error))
+    })
+    .then(() => {
+      dispatch(loading(false))
+    })
   }
 }
